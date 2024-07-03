@@ -1,14 +1,15 @@
 package org.example.service;
 
-import org.apache.ibatis.annotations.Param;
 import org.example.mapper.PatientMapper;
 import org.example.pojo.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 @Service
 public class PatientService {
-    @Autowired
+    @Resource
     private PatientMapper patientMapper;
 
     public Patient selectPatientById(String id) {
