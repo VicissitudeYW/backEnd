@@ -1,12 +1,6 @@
 package org.example.pojo;
 
-import java.sql.Timestamp;
-
-public class Doctor {
-    private String id;
-
-    private String userPswd;
-
+public class Doctor extends DataUser {
     private String doctorNo;
 
     private String specialty;
@@ -59,5 +53,16 @@ public class Doctor {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id='" + id + '\'' +
+                ", userPswd='" + userPswd + '\'' +
+                "doctorNo='" + doctorNo + '\'' +
+                ", specialty='" + specialty + '\'' +
+                ", position='" + position + '\'' +
+                '}';
     }
 }

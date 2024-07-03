@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * Author: Reno Ng 吴益伟
+ * Author: Reno Ng
  * CreateTime: 2024-07-02
  * Description: 测试接口
  */
