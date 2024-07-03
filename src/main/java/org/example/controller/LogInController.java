@@ -1,11 +1,15 @@
 package org.example.controller;
 
-import org.apache.catalina.User;
-import org.example.pojo.DataUser;
+import cn.hutool.core.util.StrUtil;
+import org.example.dto.UserDTO;
+import org.example.dto.UserResult;
+import org.example.service.UserLogin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 /**
  * Author: Reno Ng
@@ -16,44 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/login")
 public class LogInController {
+    @Autowired
+    private UserLogin userLogin;
+
     @PostMapping
-    public DataUser getUser(@RequestBody UserInput userInput) {
-        DataUser dataUser = new DataUser();
-        String username = userInput.getUsername();
-        String password = userInput.getPassword();
-        boolean is_Doctor = userInput.getIs_Doctor();
-
-
-        return dataUser;
-    }
-
-    static class UserInput {
-        private String username;
-        private String password;
-        private boolean is_Doctor;
-
-        public String getUsername() {
-            return username;
+    public UserResult login(@RequestBody UserDTO userDTO) {
+        String username = userDTO.getUsername();
+        String password = userDTO.getPassword();
+        // 判断是否为空
+        if (StrUtil.isBlank(username) || StrUtil.isBlank(password)) {
+            return new UserResult(false, "", "输入为空，请重试");
         }
 
-        public void setUsername(String username) {
-            this.username = username;
+        // 管理员账号
+        if (username.equals("admin") && password.equals("123456")) {
+            return new UserResult(true, "", "");
         }
 
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public boolean getIs_Doctor() {
-            return is_Doctor;
-        }
-
-        public void setIs_Doctor(boolean is_Doctor) {
-            this.is_Doctor = is_Doctor;
-        }
+        UserResult userRes = new UserResult();
+        userRes = userLogin.login(userRes, userDTO);
+        return userRes;
     }
 }

@@ -25,8 +25,16 @@
 
 用于专门处理业务逻辑
 <br/>
-#### Application类
-程序入口
+### dto包
+数据传输类
+
+在前、后端数据交互中传输
+<br/>
+### config包
+配置类
+<br/>
+### Application类、ServiceException类
+程序入口 & 服务异常
 <br/>
 <br/>
 <br/>

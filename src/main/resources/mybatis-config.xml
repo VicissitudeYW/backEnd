@@ -18,9 +18,10 @@
     <mappers>
         <!-- mapper resource="org/mybatis/example/BlogMapper.xml"/ !-->
         <!-- 添加映射文件及其路径 !-->
-        <!-- <mapper resource = 'org/example/mapper/DoctorMapper.xml'/>-->
+        <mapper resource = 'org/example/mapper/DoctorMapper.xml'/>
+        <mapper resource="org/example/mapper/PatientMapper.xml"/>
 
         <!-- 包扫描的方式 !-->
-        <package name = "org.example.mapper"/>
+        <!-- package name = "org.example.mapper"/-->
     </mappers>
 </configuration>

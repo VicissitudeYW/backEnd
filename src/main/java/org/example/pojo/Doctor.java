@@ -7,6 +7,8 @@ public class Doctor extends DataUser {
 
     private String position;
 
+    public Doctor() {}
+
     public Doctor(String id, String userPswd, String doctorNo, String specialty, String position) {
         this.id = id;
         this.userPswd = userPswd;
