@@ -1,4 +1,4 @@
-package org.example.controller;
+// package org.example.controller;
 
 import org.example.pojo.Doctor;
 import org.example.pojo.Patient;
@@ -16,23 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
  * Description: 测试接口
  */
 
-@RestController
-@RequestMapping("/test")
-public class TestController {
-    @GetMapping
-    public String test() {
-        return "接口调用成功！";
-    }
-
-    @Autowired
-    private DoctorService doctorService;
-    private PatientService patientService;
-
-    @GetMapping
-    public void insertDoctor() {
-        doctorService.insertDoctor(new Doctor("1", "123",
-                "1", "心脏", "北京"));
-
-        patientService.insertPatient(new Patient("1", "123", "12345"));
-    }
-}
+// @RestController
+// @RequestMapping("/test")
+// public class TestController {
+//     @GetMapping
+//     public String test() {
+//         return "接口调用成功！";
+//     }
+//
+//     @Autowired
+//     private DoctorService doctorService;
+//     private PatientService patientService;
+//
+//     @GetMapping
+//     public void insertDoctor() {
+//         doctorService.insertDoctor(new Doctor("1", "123",
+//                 "1", "心脏", "北京"));
+//
+//         patientService.insertPatient(new Patient("1", "123", "12345"));
+//     }
+// }
