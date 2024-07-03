@@ -1,10 +1,12 @@
 package org.example.mapper;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.example.pojo.Patient;
 
+@Mapper
 public interface PatientMapper {
     @Select("select #{id} from patient")
     Patient selectPatientById(@Param("id") String id);

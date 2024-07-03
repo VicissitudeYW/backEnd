@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 
 @Service
 public class PatientService {
-    @Resource
+    @Autowired
     private PatientMapper patientMapper;
 
     public Patient selectPatientById(String id) {
