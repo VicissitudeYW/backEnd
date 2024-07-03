@@ -9,13 +9,13 @@ import org.example.pojo.Patient;
 
 @Mapper
 public interface DoctorMapper {
-    @Select("select #{id} from doctor")
+    @Select("select * from doctor where id = #{id}")
     Doctor selectDoctorById(@Param("id") String id);
 
-    @Select("select #{id}, #{user_pswd} from doctor")
+    @Select("select * from doctor where id = #{id} and user_pswd = #{userPswd}")
     Doctor selectDoctorByIdAndPswd(@Param("id") String id, @Param("userPswd") String userPswd);
 
-    @Insert("insert into doctor (id, user_pswd, doctor_no, speciality, position) " +
-            "values (#{id}, #{userName}, #{doctorNo}, #{speciality}, #{position})")
+    @Insert("insert into doctor (id, user_pswd, doctor_no, specialty, position) " +
+            "values (#{id}, #{userPswd}, #{doctorNo}, #{specialty}, #{position})")
     void insertDoctor(Doctor doctor);
 }

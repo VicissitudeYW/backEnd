@@ -1,9 +1,9 @@
 package org.example.pojo;
 
-public class Doctor_credential {
+public class DoctorCredential {
     private String doctor_no;
 
-    public Doctor_credential(String doctor_no) {
+    public DoctorCredential(String doctor_no) {
         this.doctor_no = doctor_no;
     }
 

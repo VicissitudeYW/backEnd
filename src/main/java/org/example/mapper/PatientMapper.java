@@ -8,13 +8,13 @@ import org.example.pojo.Patient;
 
 @Mapper
 public interface PatientMapper {
-    @Select("select #{id} from patient")
+    @Select("select * from patient where id = #{id}")
     Patient selectPatientById(@Param("id") String id);
 
-    @Select("select #{id}, #{user_pswd} from patient")
+    @Select("select * from patient where id = #{id} and user_pswd = #{userPswd}")
     Patient selectPatientByIdAndPswd(@Param("id") String id, @Param("userPswd") String userPswd);
 
     @Insert("insert into patient (id, user_pswd, contact) " +
-            "values (#{id}, #{userName}, #{contact})")
+            "values (#{id}, #{userPswd}, #{contact})")
     void insertPatient(Patient patient);
 }

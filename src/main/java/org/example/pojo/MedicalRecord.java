@@ -1,11 +1,11 @@
 package org.example.pojo;
 
-public class Medical_record {
+public class MedicalRecord {
     private String patient_id;
 
     private String content;
 
-    public Medical_record(String patient_id, String content) {
+    public MedicalRecord(String patient_id, String content) {
         this.patient_id = patient_id;
         this.content = content;
     }
