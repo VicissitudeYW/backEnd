@@ -50,3 +50,36 @@ Springboot、Mybatis的基本配置文件
 <br/>
 ### target
 含有打包的jar文件
+<br/>
+<br/>
+```css
+project-root
+│
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   ├── org.example
+│   │   │   │   ├── controller
+│   │   │   │   │   └── (控制类 - 控制前端交互，展示结果)
+│   │   │   │   ├── mapper
+│   │   │   │   │   └── (映射类 - 数据库操作)
+│   │   │   │   ├── pojo
+│   │   │   │   │   └── (角色类 - 映射数据库关系)
+│   │   │   │   ├── service
+│   │   │   │   │   └── (服务类 - 业务逻辑处理)
+│   │   │   │   ├── dto
+│   │   │   │   │   └── (数据传输类 - 前后端数据交互)
+│   │   │   │   ├── config
+│   │   │   │   │   └── (配置类)
+│   │   │   │   ├── Application.java
+│   │   │   │   └── ServiceException.java
+│   │   │   └── (其他可能的包和类)
+│   │   ├── resources
+│   │   │   └── (Springboot、Mybatis的基本配置文件)
+│   │   └── (其他可能的资源文件)
+│   └── test
+│       └── (含MyBatis的数据库操作测试)
+├── target
+│   └── (打包的jar文件)
+└── (其他可能的项目文件，如README.md, .gitignore等)
+```
