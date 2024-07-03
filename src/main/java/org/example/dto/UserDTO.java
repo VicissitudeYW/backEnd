@@ -1,24 +1,24 @@
 package org.example.dto;
 
 public class UserDTO {
-    private String username;
+    private String id;
     private String password;
     private boolean is_Doctor;
 
     public UserDTO() {}
 
     public UserDTO(String username, String password, boolean is_Doctor) {
-        this.username = username;
+        this.id = username;
         this.password = password;
         this.is_Doctor = is_Doctor;
     }
 
-    public String getUsername() {
-        return username;
+    public String getId() {
+        return id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPassword() {

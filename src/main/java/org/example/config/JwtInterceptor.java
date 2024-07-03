@@ -22,9 +22,13 @@ public class JwtInterceptor implements HandlerInterceptor {
     @Autowired
     private UserLogin userLogin;
 
+    // 白名单账号
+    private static final String WHITELIST_USERNAME = "admin";
+
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
+
 
         // 获取token
         String token = request.getHeader("token");
@@ -36,7 +40,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 
         // 执行认证
         if (StrUtil.isBlank(token)) {
-            throw new ServiceException("没有token，重新登陆");
+            throw new ServiceException("没有token，请重新登录");
         }
 
         // 获取token的userId
@@ -44,13 +48,18 @@ public class JwtInterceptor implements HandlerInterceptor {
         try {
             userId = JWT.decode(token).getAudience().get(0); // 得到token中的userId载荷
         } catch (JWTDecodeException j) {
-            throw new ServiceException("token验证失败，重新登陆");
+            throw new ServiceException("token验证失败，请重新登录");
+        }
+
+        // 检查是否在白名单中
+        if (WHITELIST_USERNAME.equals(userId)) {
+            return true; // 直接通过拦截器
         }
 
         // 根据userId查询数据库
         DataUser dataUser = userLogin.selectById(userId);
         if (dataUser == null) {
-            throw new ServiceException("token验证失败，重新登陆");
+            throw new ServiceException("token验证失败，请重新登录");
         }
 
         // 用户密码加签验证 token
@@ -58,7 +67,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         try {
             jwtVerifier.verify(token);
         } catch (JWTVerificationException e) {
-            throw new ServiceException("token验证失败，重新登陆");
+            throw new ServiceException("token验证失败，请重新登录");
         }
 
         return true;

@@ -15,12 +15,15 @@ public class UserLogin {
 
     public UserResult login(UserResult userResult, UserDTO userDTO) {
         DataUser dataUser = null;
-        if (userDTO.getIs_Doctor()) {
+        boolean flag = userDTO.getIs_Doctor();
+        if (flag) {
             dataUser =
-                    doctorService.selectDoctorByIdAndPswd(userDTO.getUsername(), userDTO.getPassword());
+                    doctorService.selectDoctorByIdAndPswd(userDTO.getId(), userDTO.getPassword());
+            userResult.setRole("Doctor");
         } else {
             dataUser =
-                    patientService.selectPatientByIdAndPswd(userDTO.getUsername(), userDTO.getPassword());
+                    patientService.selectPatientByIdAndPswd(userDTO.getId(), userDTO.getPassword());
+            userResult.setRole("Patient");
         }
 
         if (dataUser == null) {
@@ -28,6 +31,10 @@ public class UserLogin {
             userResult.setMsg("用户不存在或密码错误");
             return userResult;
         }
+
+
+        userResult.setStatus(true);
+        userResult.setMsg("登录成功");
 
         // 设置 token
         String token = TokenUtils.getToken(dataUser.toString(), dataUser.getUserPswd());
@@ -38,11 +45,10 @@ public class UserLogin {
 
     public DataUser selectById(String id) {
         DataUser dataUser = null;
-        dataUser = patientService.selectPatientById(id);
+        dataUser = doctorService.selectDoctorById(id);
         if (dataUser == null) {
-            dataUser = doctorService.selectDoctorById(id);
+            dataUser = patientService.selectPatientById(id);
         }
-
         return dataUser;
     }
 }

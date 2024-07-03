@@ -1,13 +1,10 @@
 package org.example.service;
 
-import org.apache.ibatis.annotations.Param;
 import org.example.mapper.DoctorMapper;
 import org.example.pojo.Doctor;
-import org.example.pojo.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
 
 @Service
 public class DoctorService {
