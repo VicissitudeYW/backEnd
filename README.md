@@ -5,15 +5,23 @@
 ### main.java——源码
 #### controller包
 控制类
-用于实现web交互
+
+用于交付前端，展示结果
 <br/>
 #### mapper包
 映射类
+
 用于实现数据库操作
 <br/>
 #### pojo包
 角色类
+
 映射数据库的关系，类的属性即关系的属性
+<br/>
+### service包
+服务类
+
+用于专门处理业务逻辑
 <br/>
 #### Application类
 程序入口
@@ -30,10 +38,8 @@ Springboot、Mybatis的基本配置文件
 含有数据库连接信息
 <br/>
 <br/>
-<br/>
 ### test
-用于mybatis的数据库操作测试
-<br/>
+含mybatis的数据库操作测试
 <br/>
 <br/>
 ### target
