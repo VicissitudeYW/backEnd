@@ -1,14 +1,14 @@
 package org.example.dto;
 
-public class UserResult {
+public class LoginResult {
     private boolean status;
     private String token;
     private String msg;
     private String role;
 
-    public UserResult() {}
+    public LoginResult() {}
 
-    public UserResult(boolean status, String token, String msg, String role) {
+    public LoginResult(boolean status, String token, String msg, String role) {
         this.status = status;
         this.token = token;
         this.msg = msg;

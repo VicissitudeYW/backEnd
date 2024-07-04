@@ -1,7 +1,7 @@
 package org.example.service;
 
-import org.example.dto.UserDTO;
-import org.example.dto.UserResult;
+import org.example.dto.LoginDTO;
+import org.example.dto.LoginResult;
 import org.example.pojo.DataUser;
 import org.example.util.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,34 +13,34 @@ public class UserLogin {
     private PatientService patientService;
     private DoctorService doctorService;
 
-    public UserResult login(UserResult userResult, UserDTO userDTO) {
+    public LoginResult login(LoginResult loginResult, LoginDTO loginDTO) {
         DataUser dataUser = null;
-        boolean flag = userDTO.getIs_Doctor();
+        boolean flag = loginDTO.getIs_Doctor();
         if (flag) {
             dataUser =
-                    doctorService.selectDoctorByIdAndPswd(userDTO.getId(), userDTO.getPassword());
-            userResult.setRole("Doctor");
+                    doctorService.selectDoctorByIdAndPswd(loginDTO.getId(), loginDTO.getPassword());
+            loginResult.setRole("Doctor");
         } else {
             dataUser =
-                    patientService.selectPatientByIdAndPswd(userDTO.getId(), userDTO.getPassword());
-            userResult.setRole("Patient");
+                    patientService.selectPatientByIdAndPswd(loginDTO.getId(), loginDTO.getPassword());
+            loginResult.setRole("Patient");
         }
 
         if (dataUser == null) {
-            userResult.setStatus(false);
-            userResult.setMsg("用户不存在或密码错误");
-            return userResult;
+            loginResult.setStatus(false);
+            loginResult.setMsg("用户不存在或密码错误");
+            return loginResult;
         }
 
 
-        userResult.setStatus(true);
-        userResult.setMsg("登录成功");
+        loginResult.setStatus(true);
+        loginResult.setMsg("登录成功");
 
         // 设置 token
         String token = TokenUtils.getToken(dataUser.toString(), dataUser.getUserPswd());
-        userResult.setToken(token);
+        loginResult.setToken(token);
 
-        return userResult;
+        return loginResult;
     }
 
     public DataUser selectById(String id) {

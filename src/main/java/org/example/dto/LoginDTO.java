@@ -1,13 +1,13 @@
 package org.example.dto;
 
-public class UserDTO {
+public class LoginDTO {
     private String id;
     private String password;
     private boolean is_Doctor;
 
-    public UserDTO() {}
+    public LoginDTO() {}
 
-    public UserDTO(String username, String password, boolean is_Doctor) {
+    public LoginDTO(String username, String password, boolean is_Doctor) {
         this.id = username;
         this.password = password;
         this.is_Doctor = is_Doctor;
