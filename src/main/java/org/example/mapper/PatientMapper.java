@@ -14,7 +14,7 @@ public interface PatientMapper {
     @Select("select * from patient where id = #{id} and user_password = #{userPswd}")
     Patient selectPatientByIdAndPswd(@Param("id") String id, @Param("userPswd") String userPswd);
 
-    @Insert("insert into patient (id, user_pswd, contact) " +
+    @Insert("insert into patient (id, user_password, contact) " +
             "values (#{id}, #{userPswd}, #{contact})")
     void insertPatient(Patient patient);
 }

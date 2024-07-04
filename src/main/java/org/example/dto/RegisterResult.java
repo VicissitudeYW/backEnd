@@ -1,15 +1,15 @@
 package org.example.dto;
 
-public class RegisterResult{
+public class RegisterResult {
     private boolean status;
     private String msg;
+
+    public RegisterResult() {}
 
     public RegisterResult(boolean status, String msg) {
         this.status = status;
         this.msg = msg;
     }
-
-    public RegisterResult() {}
 
     public boolean isStatus() {return status;}
 

@@ -15,20 +15,18 @@ public class UserRegister {
 
     public RegisterResult register(RegisterResult registerResult, RegisterDTO registerDTO){
         String username = registerDTO.getIdCard();
-        if (registerDTO.getIsDoctor().equals("true")){
-            if(doctorService.selectDoctorById(username) == null) {
+        if (registerDTO.getIsDoctor()) {
+            if (doctorService.selectDoctorById(username) == null) {
                 String password = registerDTO.getPassword();
                 String specialty = registerDTO.getSpecialty();
                 String position = registerDTO.getLocation();
                 String doctorNo = registerDTO.getCertificate();
-                doctorService.insertDoctor(new Doctor(username, password, specialty, position, doctorNo));
+                doctorService.insertDoctor(new Doctor(username, password, doctorNo, specialty, position));
                 registerResult.setStatus(true);
                 registerResult.setMsg("注册成功");
-                return registerResult;
             } else {
                 registerResult.setStatus(false);
                 registerResult.setMsg("已存在该用户，注册失败");
-                return registerResult;
             }
         } else {
             if (patientService.selectPatientById(username) == null){
@@ -37,12 +35,11 @@ public class UserRegister {
                 patientService.insertPatient(new Patient(username, password, contact));
                 registerResult.setStatus(true);
                 registerResult.setMsg("注册成功");
-                return registerResult;
             } else {
                 registerResult.setStatus(false);
                 registerResult.setMsg("已存在该用户，注册失败");
-                return registerResult;
             }
         }
+        return registerResult;
     }
 }

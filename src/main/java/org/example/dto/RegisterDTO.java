@@ -3,13 +3,15 @@ package org.example.dto;
 public class RegisterDTO {
     private String idCard;
     private String password;
-    private String isDoctor;
+    private boolean isDoctor;
     private String certificate;
     private String specialty;
     private String location;
     private String contact;
 
-    public RegisterDTO(String idCard, String password, String isDoctor,
+    public RegisterDTO() {}
+
+    public RegisterDTO(String idCard, String password, boolean isDoctor,
                        String certificate, String specialty, String location, String contact) {
         this.idCard = idCard;
         this.password = password;
@@ -36,11 +38,11 @@ public class RegisterDTO {
         this.password = password;
     }
 
-    public String getIsDoctor() {
+    public boolean getIsDoctor() {
         return isDoctor;
     }
 
-    public void setIsDoctor(String isDoctor) {
+    public void setIsDoctor(boolean isDoctor) {
         this.isDoctor = isDoctor;
     }
 
