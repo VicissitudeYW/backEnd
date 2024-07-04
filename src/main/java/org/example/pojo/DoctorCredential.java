@@ -1,13 +1,13 @@
 package org.example.pojo;
 
 public class DoctorCredential {
-    private String doctor_no;
+    private String doctorNo;
 
-    public DoctorCredential(String doctor_no) {
-        this.doctor_no = doctor_no;
+    public DoctorCredential(String doctorNo) {
+        this.doctorNo = doctorNo;
     }
 
-    public String getDoctor_no() {return doctor_no;}
+    public String getDoctorNo() {return doctorNo;}
 
-    public void setDoctor_no(String doctor_no) {this.doctor_no = doctor_no;}
+    public void setDoctorNo(String doctorNo) {this.doctorNo = doctorNo;}
 }

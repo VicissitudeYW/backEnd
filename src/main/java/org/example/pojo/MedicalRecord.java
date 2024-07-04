@@ -1,20 +1,33 @@
 package org.example.pojo;
 
+import java.sql.Timestamp;
+
 public class MedicalRecord {
-    private String patient_id;
+    private String patientId;
 
     private String content;
 
-    public MedicalRecord(String patient_id, String content) {
-        this.patient_id = patient_id;
+    private Timestamp mrTime;
+
+    public MedicalRecord(String patientId, String content, Timestamp mrTime) {
+        this.patientId = patientId;
         this.content = content;
+        this.mrTime = mrTime;
     }
 
-    public String getPatient_id() {return patient_id;}
+    public String getPatientId() {return patientId;}
 
-    public void setPatient_id(String patient_id) {this.patient_id = patient_id;}
+    public void setPatientId(String patientId) {this.patientId = patientId;}
 
     public String getContent() {return content;}
 
     public void setContent(String content) {this.content = content;}
+
+    public Timestamp getMrTime() {
+        return mrTime;
+    }
+
+    public void setMrTime(Timestamp mrTime) {
+        this.mrTime = mrTime;
+    }
 }

@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Author: Liu
+ * CreateTime: 2024-07-03
+ * Description: 注册接口
+ */
+
 @RestController
 @RequestMapping("/api/register")
 public class RegisterController {

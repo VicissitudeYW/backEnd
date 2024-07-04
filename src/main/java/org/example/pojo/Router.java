@@ -5,12 +5,12 @@ public class Router {
 
     private String route;
 
-    private String active_name;
+    private String activeName;
 
-    public Router(String role, String route, String active_name) {
+    public Router(String role, String route, String activeName) {
         this.role = role;
         this.route = route;
-        this.active_name = active_name;
+        this.activeName = activeName;
     }
 
     public String getRole() {return role;}
@@ -21,7 +21,7 @@ public class Router {
 
     public void setRoute(String route) {this.route = route;}
 
-    public String getActive_name() {return active_name;}
+    public String getActiveName() {return activeName;}
 
-    public void setActive_name(String active_name) {this.active_name = active_name;}
+    public void setActiveName(String activeName) {this.activeName = activeName;}
 }

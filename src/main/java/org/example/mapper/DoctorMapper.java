@@ -12,7 +12,7 @@ public interface DoctorMapper {
     @Select("select * from doctor where id = #{id}")
     Doctor selectDoctorById(@Param("id") String id);
 
-    @Select("select * from doctor where id = #{id} and user_pswd = #{userPswd}")
+    @Select("select * from doctor where id = #{id} and user_password = #{userPswd}")
     Doctor selectDoctorByIdAndPswd(@Param("id") String id, @Param("userPswd") String userPswd);
 
     @Insert("insert into doctor (id, user_pswd, doctor_no, specialty, position) " +

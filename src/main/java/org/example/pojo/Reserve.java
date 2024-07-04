@@ -1,31 +1,43 @@
 package org.example.pojo;
 
-import java.sql.Timestamp;
 
 public class Reserve {
-    private String patient_id;
+    private String patientId;
 
-    private String doctor_id;
+    private String doctorId;
 
-    private Timestamp res_time;
+    private String startTime;
 
-    public Reserve(String patient_id, String doctor_id, Timestamp res_time) {
-        this.patient_id = patient_id;
-        this.doctor_id = doctor_id;
-        this.res_time = res_time;
+    private String endTime;
+
+    private String resDate;
+
+    public Reserve(String patientId, String doctorId, String startTime, String endTime) {
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
-    public String getPatient_id() {return patient_id;}
+    public String getPatientId() {return patientId;}
 
-    public void setPatient_id(String patient_id) {this.patient_id = patient_id;}
+    public void setPatientId(String patientId) {this.patientId = patientId;}
 
-    public String getDoctor_id() {return doctor_id;}
+    public String getDoctorId() {return doctorId;}
 
-    public void setDoctor_id(String doctor_id) {this.doctor_id = doctor_id;}
+    public void setDoctorId(String doctorId) {this.doctorId = doctorId;}
 
-    public Timestamp getRes_time() {return res_time;}
+    public String getStartTime() {return startTime;}
 
-    public void setRes_time(Timestamp res_time) {
-        this.res_time = res_time;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }
