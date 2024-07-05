@@ -13,6 +13,9 @@ public interface ReserveMapper {
     @Select("select * from reserve where doctor_id = #{doctorId}")
     List<Reserve> selectByDoctorId(@Param("doctorId") String id);
 
+    @Select("select * from reserve where patient_id = #{patientId} and doctor_id = #{doctorId}")
+    Reserve selectByPatientIdAndDoctorId(@Param("patientId") String pid, @Param("doctorId") String did);
+
     @Select("select * from reserve where doctor_id = #{doctorId} and res_date = #{resDate}")
     List<Reserve> selectByDoctorIdAndDate(@Param("doctorId") String id, @Param("resDate") String resDate);
 

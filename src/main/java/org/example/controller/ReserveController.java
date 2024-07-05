@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.dto.*;
-import org.example.exception.DuplicateKeyException;
+import org.example.exception.DuplicateReserveException;
 import org.example.pojo.Reserve;
 import org.example.service.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,8 +88,8 @@ public class ReserveController {
         return availableTime;
     }
 
-    @ExceptionHandler(DuplicateKeyException.class)
-    public AddRemoveReserveResult handleDuplicateKeyException(DuplicateKeyException e) {
+    @ExceptionHandler(DuplicateReserveException.class)
+    public AddRemoveReserveResult handleDuplicateKeyException(DuplicateReserveException e) {
         return new AddRemoveReserveResult(false, e.getMessage());
     }
 }
