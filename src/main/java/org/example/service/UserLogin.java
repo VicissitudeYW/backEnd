@@ -3,7 +3,6 @@ package org.example.service;
 import org.example.dto.LoginDTO;
 import org.example.dto.LoginResult;
 import org.example.pojo.DataUser;
-import org.example.util.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,8 +37,7 @@ public class UserLogin {
         loginResult.setMsg("登录成功");
 
         // 设置 token
-        String token = TokenUtils.getToken(dataUser.toString(), dataUser.getUserPswd());
-        loginResult.setToken(token);
+        loginResult.setToken(dataUser.getUserPswd());
 
         return loginResult;
     }
