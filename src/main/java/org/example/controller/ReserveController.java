@@ -24,8 +24,8 @@ public class ReserveController {
 
     @PostMapping("/api/addReserve")
     public AddRemoveReserveResult addReserve(@RequestBody AddRemoveReserveDTO arrDTO) {
-        String pid = arrDTO.getPid();
-        String did = arrDTO.getDid();
+        String pid = arrDTO.getPatientId();
+        String did = arrDTO.getDoctorId();
         String date = arrDTO.getResDate();
         String timeSeg = arrDTO.getTimeSeg();
 
@@ -36,8 +36,8 @@ public class ReserveController {
 
     @PostMapping("/api/removeReserve")
     public AddRemoveReserveResult removeReserve(@RequestBody AddRemoveReserveDTO arrDTO) {
-        String pid = arrDTO.getPid();
-        String did = arrDTO.getDid();
+        String pid = arrDTO.getPatientId();
+        String did = arrDTO.getDoctorId();
         String date = arrDTO.getResDate();
         String timeSeg = arrDTO.getTimeSeg();
 

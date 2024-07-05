@@ -1,9 +1,9 @@
 package org.example.dto;
 
 public class AddRemoveReserveDTO {
-    private String pid;
+    private String patientId;
 
-    private String did;
+    private String doctorId;
 
     private String resDate;
 
@@ -11,27 +11,27 @@ public class AddRemoveReserveDTO {
 
     public AddRemoveReserveDTO() {}
 
-    public AddRemoveReserveDTO(String pid, String did, String resDate, String timeSeg) {
-        this.pid = pid;
-        this.did = did;
+    public AddRemoveReserveDTO(String patientId, String doctorId, String resDate, String timeSeg) {
+        this.patientId = patientId;
+        this.doctorId = doctorId;
         this.resDate = resDate;
         this.timeSeg = timeSeg;
     }
 
-    public String getPid() {
-        return pid;
+    public String getPatientId() {
+        return patientId;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
     }
 
-    public String getDid() {
-        return did;
+    public String getDoctorId() {
+        return doctorId;
     }
 
-    public void setDid(String did) {
-        this.did = did;
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
     }
 
     public String getResDate() {
