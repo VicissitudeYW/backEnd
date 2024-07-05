@@ -29,7 +29,7 @@ public class ReserveController {
         String date = arrDTO.getResDate();
         String timeSeg = arrDTO.getTimeSeg();
 
-        reserveService.insertReserve(new Reserve(pid, did, timeSeg, date));
+        reserveService.insertReserve(new Reserve(pid, did, date, timeSeg));
 
         return new AddRemoveReserveResult(true, "预约成功");
     }
@@ -42,7 +42,7 @@ public class ReserveController {
         String timeSeg = arrDTO.getTimeSeg();
 
         int deletedRow =
-                reserveService.deleteReserve(new Reserve(pid, did, timeSeg, date));
+                reserveService.deleteReserve(new Reserve(pid, did, date, timeSeg));
 
         if (deletedRow == 0) {
             return new AddRemoveReserveResult(false, "删除失败，不存在相关的预约记录");

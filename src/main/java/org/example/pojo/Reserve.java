@@ -10,7 +10,7 @@ public class Reserve {
 
     private String resDate;
 
-    public Reserve(String patientId, String doctorId, String timeSeg, String resDate) {
+    public Reserve(String patientId, String doctorId, String resDate, String timeSeg) {
         this.patientId = patientId;
         this.doctorId = doctorId;
         this.timeSeg = timeSeg;

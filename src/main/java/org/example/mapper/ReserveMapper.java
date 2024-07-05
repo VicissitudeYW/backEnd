@@ -16,8 +16,8 @@ public interface ReserveMapper {
     @Select("select * from reserve where doctor_id = #{doctorId} and res_date = #{resDate}")
     List<Reserve> selectByDoctorIdAndDate(@Param("doctorId") String id, @Param("resDate") String resDate);
 
-    @Insert("insert into reserve (patient_id, doctor_id, time_seg, res_date)" +
-            "values (#{patientId}, #{doctorId}, #{timeSeg}, #{resDate})")
+    @Insert("insert into reserve (patient_id, doctor_id, res_date, time_seg)" +
+            "values (#{patientId}, #{doctorId}, #{resDate}, #{timeSeg})")
     void insertReserve(Reserve reserve);
 
     @Delete("delete from reserve where patient_id = #{patientId} " +
