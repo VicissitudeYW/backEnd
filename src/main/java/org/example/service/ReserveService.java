@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.exception.DuplicateKeyException;
 import org.example.mapper.ReserveMapper;
 import org.example.pojo.Reserve;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,11 @@ public class ReserveService {
     }
 
     public void insertReserve(Reserve reserve) {
-        reserveMapper.insertReserve(reserve);
+        try {
+            reserveMapper.insertReserve(reserve);
+        } catch (DuplicateKeyException e) {
+            throw new DuplicateKeyException("已存在该预约");
+        }
     }
 
     public int deleteReserve(Reserve reserve) {

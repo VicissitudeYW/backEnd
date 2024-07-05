@@ -1,9 +1,11 @@
 package org.example.controller;
 
 import org.example.dto.*;
+import org.example.exception.DuplicateKeyException;
 import org.example.pojo.Reserve;
 import org.example.service.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -84,5 +86,10 @@ public class ReserveController {
         }
 
         return availableTime;
+    }
+
+    @ExceptionHandler(DuplicateKeyException.class)
+    public AddRemoveReserveResult handleDuplicateKeyException(DuplicateKeyException e) {
+        return new AddRemoveReserveResult(false, e.getMessage());
     }
 }

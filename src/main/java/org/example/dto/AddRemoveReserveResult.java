@@ -5,6 +5,8 @@ public class AddRemoveReserveResult {
 
     private String msg;
 
+    public AddRemoveReserveResult() {}
+
     public AddRemoveReserveResult(boolean status, String msg) {
         this.status = status;
         this.msg = msg;
