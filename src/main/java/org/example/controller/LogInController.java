@@ -27,7 +27,7 @@ public class LogInController {
 
         // 管理员账号
         if (username.equals("admin") && password.equals("123456")) {
-            return new LoginResult(true, "", "", "admin");
+            return new LoginResult(true, "", "", "Admin");
         }
 
         LoginResult userRes = new LoginResult();
