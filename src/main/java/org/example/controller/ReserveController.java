@@ -26,10 +26,10 @@ public class ReserveController {
     public AddRemoveReserveResult addReserve(@RequestBody AddRemoveReserveDTO arrDTO) {
         String pid = arrDTO.getPid();
         String did = arrDTO.getDid();
-        String date = arrDTO.getDate();
-        String[] timePart = arrDTO.getTimeSeg().split("-");
+        String date = arrDTO.getResDate();
+        String timeSeg = arrDTO.getTimeSeg();
 
-        reserveService.insertReserve(new Reserve(pid, did, timePart[0], timePart[1], date));
+        reserveService.insertReserve(new Reserve(pid, did, timeSeg, date));
 
         return new AddRemoveReserveResult(true, "预约成功");
     }
@@ -38,11 +38,11 @@ public class ReserveController {
     public AddRemoveReserveResult removeReserve(@RequestBody AddRemoveReserveDTO arrDTO) {
         String pid = arrDTO.getPid();
         String did = arrDTO.getDid();
-        String date = arrDTO.getDate();
-        String[] timePart = arrDTO.getTimeSeg().split("-");
+        String date = arrDTO.getResDate();
+        String timeSeg = arrDTO.getTimeSeg();
 
         int deletedRow =
-                reserveService.deleteReserve(new Reserve(pid, did, timePart[0], timePart[1], date));
+                reserveService.deleteReserve(new Reserve(pid, did, timeSeg, date));
 
         if (deletedRow == 0) {
             return new AddRemoveReserveResult(false, "删除失败，不存在相关的预约记录");
@@ -72,8 +72,9 @@ public class ReserveController {
 
         List<Reserve> reserveList = reserveService.selectByDoctorIdAndDate(doctorId, date);
         for (Reserve r : reserveList) {
-            String[] timePart = r.getStartTime().split(":");
-            int hour = Integer.parseInt(timePart[0]);
+            String[] timePart = r.getTimeSeg().split("-");
+            String[] time = timePart[0].split(":");
+            int hour = Integer.parseInt(time[0]);
 
             if (hour >= 8 && hour <= 12) {
                 availableTime[hour - 8] = false;

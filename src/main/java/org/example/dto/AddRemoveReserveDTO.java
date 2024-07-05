@@ -5,16 +5,16 @@ public class AddRemoveReserveDTO {
 
     private String did;
 
-    private String date;
+    private String resDate;
 
     private String timeSeg;
 
     public AddRemoveReserveDTO() {}
 
-    public AddRemoveReserveDTO(String pid, String did, String date, String timeSeg) {
+    public AddRemoveReserveDTO(String pid, String did, String resDate, String timeSeg) {
         this.pid = pid;
         this.did = did;
-        this.date = date;
+        this.resDate = resDate;
         this.timeSeg = timeSeg;
     }
 
@@ -34,12 +34,12 @@ public class AddRemoveReserveDTO {
         this.did = did;
     }
 
-    public String getDate() {
-        return date;
+    public String getResDate() {
+        return resDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setResDate(String resDate) {
+        this.resDate = resDate;
     }
 
     public String getTimeSeg() {

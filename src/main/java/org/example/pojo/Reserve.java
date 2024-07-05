@@ -6,17 +6,14 @@ public class Reserve {
 
     private String doctorId;
 
-    private String startTime;
-
-    private String endTime;
+    private String timeSeg;
 
     private String resDate;
 
-    public Reserve(String patientId, String doctorId, String startTime, String endTime, String resDate) {
+    public Reserve(String patientId, String doctorId, String timeSeg, String resDate) {
         this.patientId = patientId;
         this.doctorId = doctorId;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.timeSeg = timeSeg;
         this.resDate = resDate;
     }
 
@@ -28,18 +25,12 @@ public class Reserve {
 
     public void setDoctorId(String doctorId) {this.doctorId = doctorId;}
 
-    public String getStartTime() {return startTime;}
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public String getTimeSeg() {
+        return timeSeg;
     }
 
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setTimeSeg(String timeSeg) {
+        this.timeSeg = timeSeg;
     }
 
     public String getResDate() {
