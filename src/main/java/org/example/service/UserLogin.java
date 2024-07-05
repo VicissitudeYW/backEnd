@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserLogin {
     @Autowired
     private PatientService patientService;
+    @Autowired
     private DoctorService doctorService;
 
     public LoginResult login(LoginResult loginResult, LoginDTO loginDTO) {

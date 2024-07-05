@@ -5,17 +5,17 @@ public class AddRemoveReserveDTO {
 
     private String did;
 
-    private String startTime;
+    private String date;
 
-    private String endTime;
+    private String timeSeg;
 
     public AddRemoveReserveDTO() {}
 
-    public AddRemoveReserveDTO(String pid, String did, String startTime, String endTime) {
+    public AddRemoveReserveDTO(String pid, String did, String date, String timeSeg) {
         this.pid = pid;
         this.did = did;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.date = date;
+        this.timeSeg = timeSeg;
     }
 
     public String getPid() {
@@ -34,19 +34,19 @@ public class AddRemoveReserveDTO {
         this.did = did;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public String getDate() {
+        return date;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getTimeSeg() {
+        return timeSeg;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setTimeSeg(String timeSeg) {
+        this.timeSeg = timeSeg;
     }
 }

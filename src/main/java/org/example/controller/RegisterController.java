@@ -2,12 +2,10 @@ package org.example.controller;
 
 import org.example.dto.RegisterDTO;
 import org.example.dto.RegisterResult;
+import org.example.exception.ForeignKeyViolationException;
 import org.example.service.UserRegister;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +25,14 @@ public class RegisterController {
     public RegisterResult register(@RequestBody RegisterDTO registerDTO) {
         RegisterResult registerRes = new RegisterResult();
         registerRes = userRegister.register(registerRes, registerDTO);
+        return registerRes;
+    }
+
+    @ExceptionHandler(ForeignKeyViolationException.class)
+    public RegisterResult handleForeignKeyViolationException(ForeignKeyViolationException e) {
+        RegisterResult registerRes = new RegisterResult();
+        registerRes.setStatus(false);
+        registerRes.setMsg(e.getMessage());
         return registerRes;
     }
 }

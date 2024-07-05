@@ -12,11 +12,12 @@ public class Reserve {
 
     private String resDate;
 
-    public Reserve(String patientId, String doctorId, String startTime, String endTime) {
+    public Reserve(String patientId, String doctorId, String startTime, String endTime, String resDate) {
         this.patientId = patientId;
         this.doctorId = doctorId;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.resDate = resDate;
     }
 
     public String getPatientId() {return patientId;}
@@ -39,5 +40,13 @@ public class Reserve {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getResDate() {
+        return resDate;
+    }
+
+    public void setResDate(String resDate) {
+        this.resDate = resDate;
     }
 }

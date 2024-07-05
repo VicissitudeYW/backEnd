@@ -20,11 +20,16 @@ public class ReserveService {
         return reserveMapper.selectByDoctorId(id);
     }
 
+    public List<Reserve> selectByDoctorIdAndDate(String id, String date) {
+        return reserveMapper.selectByDoctorIdAndDate(id, date);
+    }
+
     public void insertReserve(Reserve reserve) {
         reserveMapper.insertReserve(reserve);
     }
 
-    public void deleteReserve(Reserve reserve) {
-        reserveMapper.deleteReserve(reserve);
+    public int deleteReserve(Reserve reserve) {
+        return reserveMapper.deleteReserve(reserve);
     }
+
 }
