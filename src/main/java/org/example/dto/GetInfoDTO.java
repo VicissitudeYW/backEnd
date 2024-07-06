@@ -20,11 +20,11 @@ public class GetInfoDTO {
         this.id = id;
     }
 
-    public boolean isDoctor() {
+    public boolean getIsDoctor() {
         return isDoctor;
     }
 
-    public void setDoctor(boolean doctor) {
+    public void setIsDoctor(boolean doctor) {
         isDoctor = doctor;
     }
 }

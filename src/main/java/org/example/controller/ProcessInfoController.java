@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.SocketTimeoutException;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Author: Reno Ng
  * CreateTime: 2024-07-06
@@ -32,7 +28,7 @@ public class ProcessInfoController {
 
     @PostMapping("/api/getInfo")
     public DataUser getInfo(@RequestBody GetInfoDTO getInfoDTO) {
-        boolean isDoctor = getInfoDTO.isDoctor();
+        boolean isDoctor = getInfoDTO.getIsDoctor();
         String id = getInfoDTO.getId();
 
         DataUser dataUser = null;

@@ -20,11 +20,11 @@ public class SearchReserveDTO {
         this.id = id;
     }
 
-    public boolean isDoctor() {
+    public boolean getIsDoctor() {
         return isDoctor;
     }
 
-    public void setDoctor(boolean doctor) {
+    public void getSetDoctor(boolean doctor) {
         isDoctor = doctor;
     }
 }

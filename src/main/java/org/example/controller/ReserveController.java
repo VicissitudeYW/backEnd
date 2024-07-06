@@ -56,7 +56,7 @@ public class ReserveController {
     @PostMapping("/api/searchReserve")
     public SearchReserveResult searchReserve(@RequestBody SearchReserveDTO srDTO) {
         String id = srDTO.getId();
-        boolean isDoctor = srDTO.isDoctor();
+        boolean isDoctor = srDTO.getIsDoctor();
 
         List<Reserve> row = isDoctor ?
                 reserveService.selectByDoctorId(id) : reserveService.selectByPatientId(id);

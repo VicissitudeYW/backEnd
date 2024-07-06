@@ -3,19 +3,12 @@ package org.example.controller;
 
 import org.example.dto.*;
 import org.example.pojo.DataUser;
-import org.example.pojo.Patient;
-import org.example.pojo.Reserve;
-import org.example.service.PatientService;
-import org.example.service.ReserveService;
 import org.example.service.UserLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -66,18 +59,18 @@ public class TestController {
     public String test2() {
         GetInfoDTO getInfoDTO = new GetInfoDTO();
         getInfoDTO.setId("10");
-        getInfoDTO.setDoctor(true);
+        getInfoDTO.setIsDoctor(true);
 
         DataUser dataUser = processInfoController.getInfo(getInfoDTO);
 
         return dataUser.toString();
     }
 
-    @GetMapping("/3")
-    public SearchReserveResult test3() {
-        String id = "1";
-        boolean isDoctor = true;
-
-        return reserveController.searchReserve(new SearchReserveDTO(id, isDoctor));
-    }
+    // @GetMapping("/3")
+    // public SearchReserveResult test3() {
+    //     String id = "1";
+    //     boolean isDoctor = true;
+    //
+    //     return reserveController.searchReserve(new SearchReserveDTO(id, isDoctor));
+    // }
 }
