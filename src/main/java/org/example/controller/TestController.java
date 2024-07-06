@@ -1,6 +1,9 @@
 package org.example.controller;
 
 
+import org.example.dto.GetInfoDTO;
+import org.example.dto.UpdateInfoDTO;
+import org.example.pojo.DataUser;
 import org.example.pojo.Patient;
 import org.example.pojo.Reserve;
 import org.example.service.PatientService;
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -23,13 +29,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test")
 public class TestController {
     @Autowired
-    private ReserveService reserveService;
+    private ProcessInfoController processInfoController;
 
-    @GetMapping
+    @GetMapping("/1")
     public String test() {
-        int deleted = reserveService.deleteReserve(
-                new Reserve("121", "10", "2024-07-18", "14:00:00-15:00:00"));
-        return deleted + "接口调用成功！";
+
+        Map<String, Object> updateInfo = new HashMap<>();
+        updateInfo.put("userPswd", "123");
+        updateInfo.put("specialty", "HPXJHIXvbR");
+        updateInfo.put("position", "UpD4UUE4y1");
+
+        UpdateInfoDTO updateInfoDTO = new UpdateInfoDTO();
+        updateInfoDTO.setId("908");
+        updateInfoDTO.setRole("doctor");
+        updateInfoDTO.setUpdateInfo(updateInfo);
+
+        processInfoController.updateInfo(updateInfoDTO);
+
+        return "医生信息更新测试完成！";
+    }
+
+    @GetMapping("/2")
+    public String test2() {
+        GetInfoDTO getInfoDTO = new GetInfoDTO();
+        getInfoDTO.setId("121");
+        getInfoDTO.setDoctor(false);
+
+        DataUser dataUser = processInfoController.getInfo(getInfoDTO);
+
+        return dataUser.toString();
     }
 
 }

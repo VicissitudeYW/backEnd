@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.example.mapper.PatientMapper;
 import org.example.pojo.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,11 @@ public class PatientService {
 
     public void insertPatient(Patient patient) {
         patientMapper.insertPatient(patient);
+    }
+
+    public void updatePatient(String id,
+                              String userPswd,
+                              String contact) {
+        patientMapper.updatePatient(id, userPswd, contact);
     }
 }

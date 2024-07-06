@@ -17,21 +17,6 @@ public class Doctor extends DataUser {
         this.position = position;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUserPswd() {
-        return userPswd;
-    }
-
-    public void setUserPswd(String userPswd) {
-        this.userPswd = userPswd;
-    }
 
     public String getDoctorNo() {
         return doctorNo;

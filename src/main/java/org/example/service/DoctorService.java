@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.example.exception.ForeignKeyViolationException;
 import org.example.mapper.DoctorMapper;
 import org.example.pojo.Doctor;
@@ -27,5 +28,13 @@ public class DoctorService {
         } catch (DataIntegrityViolationException e) {
             throw new ForeignKeyViolationException("医生凭证不存在，请重新输入");
         }
+    }
+
+    public void updateDoctor(String id,
+                             String userPswd,
+                             String doctorNo,
+                             String specialty,
+                             String position) {
+        doctorMapper.updateDoctor(id, userPswd, doctorNo, specialty, position);
     }
 }

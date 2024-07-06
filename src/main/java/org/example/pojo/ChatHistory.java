@@ -11,9 +11,9 @@ public class ChatHistory {
 
     private String content;
 
-    private Timestamp chatTime;
+    private String chatTime;
 
-    public ChatHistory(String patientId, String doctorId, boolean isDoctor, String content, Timestamp chatTime) {
+    public ChatHistory(String patientId, String doctorId, boolean isDoctor, String content, String chatTime) {
         this.patientId = patientId;
         this.doctorId = doctorId;
         this.isDoctor = isDoctor;
@@ -37,7 +37,7 @@ public class ChatHistory {
 
     public void setContent(String content) {this.content = content;}
 
-    public Timestamp getChatTime() {return chatTime;}
+    public String getChatTime() {return chatTime;}
 
-    public void setChatTime(Timestamp chatTime) {this.chatTime = chatTime;}
+    public void setChatTime(String chatTime) {this.chatTime = chatTime;}
 }

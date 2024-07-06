@@ -5,6 +5,8 @@ public class DataUser {
 
     protected String userPswd;
 
+    private String msg;
+
     public DataUser() {}
 
     public DataUser(String id, String userPswd) {
@@ -26,5 +28,13 @@ public class DataUser {
 
     public void setUserPswd(String userPswd) {
         this.userPswd = userPswd;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }
