@@ -2,7 +2,8 @@ package org.example.service;
 
 import org.example.dto.LoginDTO;
 import org.example.dto.LoginResult;
-import org.example.pojo.DataUser;
+import org.example.pojo.Doctor;
+import org.example.pojo.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,40 +15,33 @@ public class UserLogin {
     private DoctorService doctorService;
 
     public LoginResult login(LoginResult loginResult, LoginDTO loginDTO) {
-        DataUser dataUser = null;
-        boolean flag = loginDTO.getIs_Doctor();
+        boolean flag = loginDTO.getIsDoctor();
         if (flag) {
-            dataUser =
+            Doctor doctor =
                     doctorService.selectDoctorByIdAndPswd(loginDTO.getId(), loginDTO.getPassword());
             loginResult.setRole("Doctor");
+            if (doctor == null) {
+                loginResult.setStatus(false);
+                loginResult.setMsg("用户不存在或密码错误");
+                return loginResult;
+            }
+            loginResult.setToken(doctor.getUserPswd());
+            loginResult.setStatus(true);
+            loginResult.setMsg("登录成功");
         } else {
-            dataUser =
+            Patient patient =
                     patientService.selectPatientByIdAndPswd(loginDTO.getId(), loginDTO.getPassword());
             loginResult.setRole("Patient");
+            if (patient == null) {
+                loginResult.setStatus(false);
+                loginResult.setMsg("用户不存在或密码错误");
+                return loginResult;
+            }
+            loginResult.setToken(patient.getUserPswd());
+            loginResult.setStatus(true);
+            loginResult.setMsg("登录成功");
         }
-
-        if (dataUser == null) {
-            loginResult.setStatus(false);
-            loginResult.setMsg("用户不存在或密码错误");
-            return loginResult;
-        }
-
-
-        loginResult.setStatus(true);
-        loginResult.setMsg("登录成功");
-
-        // 设置 token
-        loginResult.setToken(dataUser.getUserPswd());
 
         return loginResult;
-    }
-
-    public DataUser selectById(String id) {
-        DataUser dataUser = null;
-        dataUser = doctorService.selectDoctorById(id);
-        if (dataUser == null) {
-            dataUser = patientService.selectPatientById(id);
-        }
-        return dataUser;
     }
 }

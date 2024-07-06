@@ -7,9 +7,9 @@ public class MedicalRecord {
 
     private String content;
 
-    private Timestamp mrTime;
+    private String mrTime;
 
-    public MedicalRecord(String patientId, String content, Timestamp mrTime) {
+    public MedicalRecord(String patientId, String content, String mrTime) {
         this.patientId = patientId;
         this.content = content;
         this.mrTime = mrTime;
@@ -23,11 +23,11 @@ public class MedicalRecord {
 
     public void setContent(String content) {this.content = content;}
 
-    public Timestamp getMrTime() {
+    public String getMrTime() {
         return mrTime;
     }
 
-    public void setMrTime(Timestamp mrTime) {
+    public void setMrTime(String mrTime) {
         this.mrTime = mrTime;
     }
 }

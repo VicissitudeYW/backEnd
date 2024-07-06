@@ -1,13 +1,13 @@
 package org.example.controller;
 
 
-import org.example.dto.GetInfoDTO;
-import org.example.dto.UpdateInfoDTO;
+import org.example.dto.*;
 import org.example.pojo.DataUser;
 import org.example.pojo.Patient;
 import org.example.pojo.Reserve;
 import org.example.service.PatientService;
 import org.example.service.ReserveService;
+import org.example.service.UserLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,20 +29,33 @@ import java.util.Map;
 @RequestMapping("/api/test")
 public class TestController {
     @Autowired
+    private UserLogin userLogin;
+    @Autowired
+    private ReserveController reserveController;
+    @Autowired
     private ProcessInfoController processInfoController;
 
+    @GetMapping("/0")
+    public LoginResult test0() {
+        String id = "121";
+        String password = "Pg7j7zD5v";
+        boolean isDoctor = false;
+
+        LoginDTO loginDTO = new LoginDTO(id, password, isDoctor);
+        LoginResult loginResult = new LoginResult();
+
+        return userLogin.login(loginResult, loginDTO);
+    }
+
     @GetMapping("/1")
-    public String test() {
-
-        Map<String, Object> updateInfo = new HashMap<>();
-        updateInfo.put("userPswd", "123");
-        updateInfo.put("specialty", "HPXJHIXvbR");
-        updateInfo.put("position", "UpD4UUE4y1");
-
+    public String test1() {
         UpdateInfoDTO updateInfoDTO = new UpdateInfoDTO();
         updateInfoDTO.setId("908");
         updateInfoDTO.setRole("doctor");
-        updateInfoDTO.setUpdateInfo(updateInfo);
+        updateInfoDTO.setPassword("1234567890");
+        updateInfoDTO.setContact("123");
+        updateInfoDTO.setSpecialty("心脏");
+        updateInfoDTO.setPosition("");
 
         processInfoController.updateInfo(updateInfoDTO);
 
@@ -52,12 +65,19 @@ public class TestController {
     @GetMapping("/2")
     public String test2() {
         GetInfoDTO getInfoDTO = new GetInfoDTO();
-        getInfoDTO.setId("121");
-        getInfoDTO.setDoctor(false);
+        getInfoDTO.setId("10");
+        getInfoDTO.setDoctor(true);
 
         DataUser dataUser = processInfoController.getInfo(getInfoDTO);
 
         return dataUser.toString();
     }
 
+    @GetMapping("/3")
+    public SearchReserveResult test3() {
+        String id = "1";
+        boolean isDoctor = true;
+
+        return reserveController.searchReserve(new SearchReserveDTO(id, isDoctor));
+    }
 }

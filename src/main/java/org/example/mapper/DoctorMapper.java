@@ -2,7 +2,6 @@ package org.example.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.example.pojo.Doctor;
-import org.example.pojo.Patient;
 
 @Mapper
 public interface DoctorMapper {
@@ -10,8 +9,7 @@ public interface DoctorMapper {
             "specialty, position from doctor where id = #{id}")
     Doctor selectDoctorById(@Param("id") String id);
 
-    @Select("select id, user_password as userPswd, doctor_no as doctorNo," +
-            "specialty, position from doctor where id = #{id} and user_password = #{userPswd}")
+    @Select("select * from doctor where id = #{id} and user_password = #{userPswd}")
     Doctor selectDoctorByIdAndPswd(@Param("id") String id, @Param("userPswd") String userPswd);
 
     @Insert("insert into doctor (id, user_password, doctor_no, specialty, position) " +
@@ -21,16 +19,14 @@ public interface DoctorMapper {
     @Update("<script>"
             + "update doctor"
             + "<set>"
-            + "<if test='userPswd != null'> user_password = #{userPswd}, </if>"
-            + "<if test='doctorNo != null'> doctor_no = #{doctorNo}, </if>"
-            + "<if test='specialty != null'> specialty = #{specialty}, </if>"
-            + "<if test='position != null'> position = #{position}, </if>"
+            + "<if test='password != null and password != \"\"'> user_password = #{password}, </if>"
+            + "<if test='specialty != null and specialty != \"\"'> specialty = #{specialty}, </if>"
+            + "<if test='position != null and position != \"\"'> position = #{position}, </if>"
             + "</set>"
             + "where id = #{id}"
             + "</script>")
     void updateDoctor(@Param("id") String id,
-                      @Param("userPswd") String userPswd,
-                      @Param("doctorNo") String doctorNo,
+                      @Param("password") String password,
                       @Param("specialty") String specialty,
                       @Param("position") String position);
 }

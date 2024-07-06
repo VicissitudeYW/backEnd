@@ -37,4 +37,13 @@ public class DataUser {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    @Override
+    public String toString() {
+        return "DataUser{" +
+                "id='" + id + '\'' +
+                ", userPswd='" + userPswd + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

@@ -27,12 +27,13 @@ public class LogInController {
 
         // 管理员账号
         if (username.equals("admin") && password.equals("123456")) {
-            return new LoginResult(true, "", "", "Admin");
+            return new LoginResult(true, "", "登录成功", "Admin");
         }
 
+        System.out.println(username + "\n" + password + "\n" +loginDTO.getIsDoctor());
+
         LoginResult userRes = new LoginResult();
-        userRes = userLogin.login(userRes, loginDTO);
-        return userRes;
+        return userLogin.login(userRes, loginDTO);
     }
 
 }

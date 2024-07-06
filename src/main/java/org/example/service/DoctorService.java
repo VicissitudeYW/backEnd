@@ -32,9 +32,8 @@ public class DoctorService {
 
     public void updateDoctor(String id,
                              String userPswd,
-                             String doctorNo,
                              String specialty,
                              String position) {
-        doctorMapper.updateDoctor(id, userPswd, doctorNo, specialty, position);
+        doctorMapper.updateDoctor(id, userPswd, specialty, position);
     }
 }

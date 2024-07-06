@@ -9,14 +9,24 @@ public class UpdateInfoDTO {
 
     private String role;
 
-    private Map<String, Object> updateInfo;
+    private String password;
+
+    private String contact;
+
+    private String specialty;
+
+    private String position;
 
     public UpdateInfoDTO() {}
 
-    public UpdateInfoDTO(String id, String role, Map<String, Object> updateInfo) {
+    public UpdateInfoDTO(String id, String role, String password, String contact,
+                         String specialty, String position) {
         this.id = id;
         this.role = role;
-        this.updateInfo = updateInfo;
+        this.password = password;
+        this.contact = contact;
+        this.specialty = specialty;
+        this.position = position;
     }
 
     public String getId() {
@@ -35,11 +45,35 @@ public class UpdateInfoDTO {
         this.role = role;
     }
 
-    public Map<String, Object> getUpdateInfo() {
-        return updateInfo;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUpdateInfo(Map<String, Object> updateInfo) {
-        this.updateInfo = updateInfo;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

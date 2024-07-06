@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.SocketTimeoutException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,16 +35,23 @@ public class ProcessInfoController {
         boolean isDoctor = getInfoDTO.isDoctor();
         String id = getInfoDTO.getId();
 
-        DataUser dataUser;
+        DataUser dataUser = null;
         if (isDoctor) {
-            dataUser = doctorService.selectDoctorById(id);
+            Doctor doctor = doctorService.selectDoctorById(id);
+            if (doctor != null) {
+                dataUser = doctor;
+            } else {
+                dataUser = new DataUser();
+                dataUser.setMsg("找不到医生信息");
+            }
         } else {
-            dataUser = patientService.selectPatientById(id);
-        }
-
-        if (dataUser == null) {
-            dataUser = new DataUser();
-            dataUser.setMsg(isDoctor ? "找不到医生信息" : "找不到患者信息");
+            Patient patient = patientService.selectPatientById(id);
+            if (patient != null) {
+                dataUser = patient;
+            } else {
+                dataUser = new DataUser();
+                dataUser.setMsg("找不到患者信息");
+            }
         }
 
         return dataUser;
@@ -53,59 +61,43 @@ public class ProcessInfoController {
     public UpdateInfoResult updateInfo(@RequestBody UpdateInfoDTO updateInfoDTO) {
         String id = updateInfoDTO.getId();
         String role = updateInfoDTO.getRole();
-        Map<String, Object> updateInfo = updateInfoDTO.getUpdateInfo();
+        String password = updateInfoDTO.getPassword();
+        String specialty = updateInfoDTO.getSpecialty();
+        String position = updateInfoDTO.getPosition();
+        String contact = updateInfoDTO.getContact();
 
         switch (role.toLowerCase()) {
             case "admin":
-                if (!updateDoctorInfo(id, updateInfo) && !updatePatientInfo(id, updateInfo)) {
+                if (doctorService.selectDoctorById(id) != null) {
+                    doctorService.updateDoctor(id, password, specialty, position);
+                    return new UpdateInfoResult(true, "更新成功");
+                } else if (patientService.selectPatientById(id) != null) {
+                    patientService.updatePatient(id, password, contact);
+                    return new UpdateInfoResult(true, "更新成功");
+                } else {
                     return new UpdateInfoResult(false, "未找到该医生或患者");
                 }
-                break;
+
 
             case "doctor":
-                if (!updateDoctorInfo(id, updateInfo)) {
+                if (doctorService.selectDoctorById(id) != null) {
+                    doctorService.updateDoctor(id, password, specialty, position);
+                    return new UpdateInfoResult(true, "更新成功");
+                } else {
                     return new UpdateInfoResult(false, "未找到该医生");
                 }
-                break;
 
             case "patient":
-                if (!updatePatientInfo(id, updateInfo)) {
+                if (patientService.selectPatientById(id) != null) {
+                    patientService.updatePatient(id, password, contact);
+                    return new UpdateInfoResult(true, "更新成功");
+                } else {
                     return new UpdateInfoResult(false, "未找到该患者");
                 }
-                break;
 
             default:
                 return new UpdateInfoResult(false, "查询有误，请检查输入");
         }
-
-        return new UpdateInfoResult(true, "更新成功");
     }
 
-    private boolean updateDoctorInfo(String id, Map<String, Object> updateInfo) {
-        Doctor doctor = doctorService.selectDoctorById(id);
-        if (doctor == null) {
-            return false;
-        }
-
-        doctorService.updateDoctor(id,
-                                   (String) updateInfo.get("userPswd"),
-                                   (String) updateInfo.get("doctorNo"),
-                                   (String) updateInfo.get("specialty"),
-                                   (String) updateInfo.get("position"));
-
-        return true;
-    }
-
-    private boolean updatePatientInfo(String id, Map<String, Object> updateInfo) {
-        Patient patient = patientService.selectPatientById(id);
-        if (patient == null) {
-            return false;
-        }
-
-        patientService.updatePatient(id,
-                                    (String) updateInfo.get("userPswd"),
-                                    (String) updateInfo.get("contact"));
-
-        return true;
-    }
 }

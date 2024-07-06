@@ -3,14 +3,14 @@ package org.example.dto;
 public class LoginDTO {
     private String id;
     private String password;
-    private boolean is_Doctor;
+    private boolean isDoctor;
 
     public LoginDTO() {}
 
-    public LoginDTO(String username, String password, boolean is_Doctor) {
+    public LoginDTO(String username, String password, boolean isDoctor) {
         this.id = username;
         this.password = password;
-        this.is_Doctor = is_Doctor;
+        this.isDoctor = isDoctor;
     }
 
     public String getId() {
@@ -29,11 +29,11 @@ public class LoginDTO {
         this.password = password;
     }
 
-    public boolean getIs_Doctor() {
-        return is_Doctor;
+    public boolean getIsDoctor() {
+        return isDoctor;
     }
 
-    public void setIs_Doctor(boolean is_Doctor) {
-        this.is_Doctor = is_Doctor;
+    public void setIsDoctor(boolean doctor) {
+        this.isDoctor = doctor;
     }
 }
