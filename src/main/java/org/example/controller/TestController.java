@@ -1,6 +1,5 @@
 package org.example.controller;
 
-
 import org.example.dto.*;
 import org.example.pojo.DataUser;
 import org.example.service.UserLogin;
@@ -23,8 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @Autowired
     private UserLogin userLogin;
-    @Autowired
-    private ReserveController reserveController;
     @Autowired
     private ProcessInfoController processInfoController;
 
@@ -66,11 +63,4 @@ public class TestController {
         return dataUser.toString();
     }
 
-    // @GetMapping("/3")
-    // public SearchReserveResult test3() {
-    //     String id = "1";
-    //     boolean isDoctor = true;
-    //
-    //     return reserveController.searchReserve(new SearchReserveDTO(id, isDoctor));
-    // }
 }

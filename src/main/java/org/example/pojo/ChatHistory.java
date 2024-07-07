@@ -1,41 +1,65 @@
 package org.example.pojo;
 
-import java.sql.Timestamp;
-
 public class ChatHistory {
-    private String patientId;
+    private long id;
 
-    private String doctorId;
+    private String fromId;
 
-    private boolean isDoctor;
+    private String toId;
 
-    private String content;
+    private String fromRole;
+
+    private String toRole;
+
+    private String message;
 
     private String chatTime;
 
-    public ChatHistory(String patientId, String doctorId, boolean isDoctor, String content, String chatTime) {
-        this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.isDoctor = isDoctor;
-        this.content = content;
+    public ChatHistory(String fromId, String toId, String fromRole, String toRole,
+                       String message, String chatTime) {
+        this.fromId = fromId;
+        this.toId = toId;
+        this.fromRole = fromRole;
+        this.toRole = toRole;
+        this.message = message;
         this.chatTime = chatTime;
     }
 
-    public String getPatientId() {return patientId;}
+    public String getFromId() {return fromId;}
 
-    public void setPatientId(String patientId) {this.patientId = patientId;}
+    public void setFromId(String fromId) {this.fromId = fromId;}
 
-    public String getDoctorId() {return doctorId;}
+    public String getToId() {return toId;}
 
-    public void setDoctorId(String doctorId) {this.doctorId = doctorId;}
+    public void setToId(String toId) {this.toId = toId;}
 
-    public boolean isDoctor() {return isDoctor;}
+    public long getId() {
+        return id;
+    }
 
-    public void setDoctor(boolean doctor) {this.isDoctor = doctor;}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-    public String getContent() {return content;}
+    public String getFromRole() {
+        return fromRole;
+    }
 
-    public void setContent(String content) {this.content = content;}
+    public void setFromRole(String fromRole) {
+        this.fromRole = fromRole;
+    }
+
+    public String getToRole() {
+        return toRole;
+    }
+
+    public void setToRole(String toRole) {
+        this.toRole = toRole;
+    }
+
+    public String getMessage() {return message;}
+
+    public void setMessage(String message) {this.message = message;}
 
     public String getChatTime() {return chatTime;}
 

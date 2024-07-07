@@ -14,7 +14,7 @@ project-root
 │   │   │   │   ├── mapper
 │   │   │   │   │   └── (映射类 - 数据库操作)
 │   │   │   │   ├── pojo
-│   │   │   │   │   └── (角色类 - 映射数据库关系)
+│   │   │   │   │   └──(角色类 - 映射数据库关系)
 │   │   │   │   ├── service
 │   │   │   │   │   └── (服务类 - 业务逻辑处理)
 │   │   │   │   ├── dto
@@ -43,6 +43,7 @@ project-root
 
 用于交付前端，展示结果
 <br/>
+
 #### mapper包
 映射类
 
@@ -50,32 +51,41 @@ project-root
 
 使用注释写法
 <br/>
+
 #### pojo包
 角色类
 
 映射数据库的关系，类的属性即关系的属性
 <br/>
+
 ### service包
 服务类
 
 用于专门处理业务逻辑
 <br/>
+
 ### dto包
 数据传输类
 
 在前、后端数据交互中传输
 <br/>
+
 ### config包
 配置类
+
+包含聊天室组件
 <br/>
+
 ### exception包
 自定义的异常类
 <br/>
+
 ### Application类、ServiceException类
 程序入口 & 服务异常
 <br/>
 <br/>
 <br/>
+
 ### resources——基本设定与配置
 Springboot、Mybatis的基本配置文件
 
