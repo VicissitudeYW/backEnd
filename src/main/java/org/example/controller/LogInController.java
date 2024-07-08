@@ -30,8 +30,6 @@ public class LogInController {
             return new LoginResult(true, "", "登录成功", "Admin");
         }
 
-        System.out.println(username + "\n" + password + "\n" +loginDTO.getIsDoctor());
-
         LoginResult userRes = new LoginResult();
         return userLogin.login(userRes, loginDTO);
     }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,10 +16,16 @@ public class ChatController {
     @Autowired
     private ChatService chatService;
 
-    @PostMapping("/api/getchatHistory")
+    @PostMapping("/api/getChatHistory")
     public List<ChatHistory> getChatHistory(@RequestBody getChatHistoryDTO gchDTO) {
         String pid = gchDTO.getPatientId(), did = gchDTO.getDoctorId();
 
-        return chatService.getChatHistory(pid, did);
+        List<ChatHistory> chatHistory = chatService.getChatHistory(pid, did);
+
+        if (chatHistory == null) {
+            chatHistory = new ArrayList<>();
+        }
+
+        return chatHistory;
     }
 }

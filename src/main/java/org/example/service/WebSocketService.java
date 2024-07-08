@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@RestController
 @Component
 @ServerEndpoint("/chat/{fromId}/{fromRole}")
 public class WebSocketService {
@@ -52,18 +51,14 @@ public class WebSocketService {
     @OnOpen
     public void handleOnOpen(Session session, @PathParam("fromId") String fromId,
                              @PathParam("fromRole") String fromRole) {
-        if (fromRole.equals("patient")) {
+        if (fromRole.equals("Patient")) {
             patientSessions.put(fromId, session);
             logger.info("新患者 {} 进入咨询，当前在线患者数: {}", fromId, patientSessions.size());
-        } else if (fromRole.equals("doctor")) {
+        } else if (fromRole.equals("Doctor")) {
             doctorSessions.put(fromId, session);
             logger.info("新医生 {} 进入咨询，当前在线医生数: {}", fromId, doctorSessions.size());
         }
 
-        List<ChatHistory> chatHistoryList = chatService.getChatHistory(fromId, fromRole);
-        for (ChatHistory ch : chatHistoryList) {
-            sendMessage(ch.toString(), session);
-        }
     }
 
     /*
@@ -76,12 +71,12 @@ public class WebSocketService {
     @OnClose
     public void handleOnClose(Session session, @PathParam("fromId") String fromId,
                               @PathParam("fromRole") String fromRole) {
-        if (fromRole.equals("patient")) {
+        if (fromRole.equals("Patient")) {
             patientSessions.remove(fromId);
             patientDoctorMap.remove(fromId);
             doctorPatientMap.forEach((doctor, patients) -> patients.remove(fromId));
             logger.info("患者 {} 关闭连接，当前在线患者数: {}", fromId, patientSessions.size());
-        } else if (fromRole.equals("doctor")) {
+        } else if (fromRole.equals("Doctor")) {
             doctorSessions.remove(fromId);
             doctorPatientMap.remove(fromId);
             patientDoctorMap.forEach((doctor, patients) -> patients.remove(fromId));
@@ -110,10 +105,10 @@ public class WebSocketService {
         chatService.saveChatHistory
                 (new ChatHistory(fromId, toId, fromRole, toRole, msg, chatTime));
 
-        if (fromRole.equals("patient") && toRole.equals("doctor")) {
+        if (fromRole.equals("Patient") && toRole.equals("Doctor")) {
             // 病人发送给医生
             handlePatientToDoctorMsg(fromId, toId, msg);
-        } else if (fromRole.equals("doctor") && toRole.equals("patient")) {
+        } else if (fromRole.equals("Doctor") && toRole.equals("Patient")) {
             // 医生发送给病人
             handleDoctorToPatientMsg(fromId, toId, msg);
         }
@@ -132,7 +127,7 @@ public class WebSocketService {
         if (toSession != null) {
             JSONObject jsonObj = new JSONObject();
             jsonObj.set("fromId", fromId);
-            jsonObj.set("fromRole", "patient");
+            jsonObj.set("fromRole", "Patient");
             jsonObj.set("message", msg);
             sendMessage(jsonObj.toString(), toSession);
             logger.info("患者 {} 发送给 医生 {}，内容: {}", fromId, toId, jsonObj.toString());
@@ -159,7 +154,7 @@ public class WebSocketService {
         if (toSession != null) {
             JSONObject jsonObj = new JSONObject();
             jsonObj.set("fromId", fromId);
-            jsonObj.set("fromRole", "doctor");
+            jsonObj.set("fromRole", "Doctor");
             jsonObj.set("message", msg);
             sendMessage(jsonObj.toString(), toSession);
             logger.info("医生 {} 发送给 患者 {}，内容: {}", fromId, toId, jsonObj.toString());
