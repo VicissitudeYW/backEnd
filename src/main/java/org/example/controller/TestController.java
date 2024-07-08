@@ -63,4 +63,78 @@ public class TestController {
         return dataUser.toString();
     }
 
+    @RequestMapping("/3")
+    public String test3() {
+        return "<!DOCTYPE html>" +
+                "<html>" +
+                "<head>" +
+                "<title>WebSocket Test</title>" +
+                "</head>" +
+                "<body>" +
+                "<h2>WebSocket Test</h2>" +
+                "<div>" +
+                "User ID: <input type='text' id='fromId' value='patient1'><br>" +
+                "User Role: <input type='text' id='fromRole' value='patient'><br>" +
+                "<button onclick='connect()'>Connect</button>" +
+                "<button onclick='disconnect()'>Disconnect</button>" +
+                "</div>" +
+                "<div>" +
+                "Message to ID: <input type='text' id='toId' value='doctor1'><br>" +
+                "Message: <input type='text' id='message'><br>" +
+                "To Role: <input type='text' id='toRole' value='doctor'><br>" +
+                "Chat Time: <input type='text' id='chatTime' value='2024-07-08 14:30:00'><br>" +
+                "<button onclick='sendMessage()'>Send Message</button>" +
+                "</div>" +
+                "<div id='chatBox' style='border: 1px solid black; height: 200px; overflow-y: scroll;'>" +
+                "</div>" +
+                "<script>" +
+                "var ws;" +
+                "function connect() {" +
+                "    var fromId = document.getElementById('fromId').value;" +
+                "    var fromRole = document.getElementById('fromRole').value;" +
+                "    ws = new WebSocket('ws://8.138.127.170/chat/' + fromId + '/' + fromRole);" +
+                "    ws.onmessage = function(event) {" +
+                "        var chatBox = document.getElementById('chatBox');" +
+                "        var newMessage = document.createElement('div');" +
+                "        newMessage.textContent = event.data;" +
+                "        chatBox.appendChild(newMessage);" +
+                "    };" +
+                "    ws.onopen = function() {" +
+                "        var chatBox = document.getElementById('chatBox');" +
+                "        var newMessage = document.createElement('div');" +
+                "        newMessage.textContent = 'Connected';" +
+                "        chatBox.appendChild(newMessage);" +
+                "    };" +
+                "    ws.onclose = function() {" +
+                "        var chatBox = document.getElementById('chatBox');" +
+                "        var newMessage = document.createElement('div');" +
+                "        newMessage.textContent = 'Disconnected';" +
+                "        chatBox.appendChild(newMessage);" +
+                "    };" +
+                "}" +
+                "function disconnect() {" +
+                "    if (ws) {" +
+                "        ws.close();" +
+                "    }" +
+                "}" +
+                "function sendMessage() {" +
+                "    if (ws) {" +
+                "        var toId = document.getElementById('toId').value;" +
+                "        var message = document.getElementById('message').value;" +
+                "        var toRole = document.getElementById('toRole').value;" +
+                "        var chatTime = document.getElementById('chatTime').value;" +
+                "        var msg = JSON.stringify({" +
+                "            toId: toId," +
+                "            message: message," +
+                "            toRole: toRole," +
+                "            chatTime: chatTime" +
+                "        });" +
+                "        ws.send(msg);" +
+                "    }" +
+                "}" +
+                "</script>" +
+                "</body>" +
+                "</html>";
+    }
+
 }

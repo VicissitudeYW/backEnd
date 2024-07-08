@@ -2,12 +2,12 @@ package org.example.service;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import org.example.mapper.ChatMapper;
 import org.example.pojo.ChatHistory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -17,8 +17,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@ServerEndpoint("/chat")
+@RestController
 @Component
+@ServerEndpoint("/chat/{fromId}/{fromRole}")
 public class WebSocketService {
     // 设置服务器日志
     private static final Logger logger =
@@ -88,7 +89,6 @@ public class WebSocketService {
         }
     }
 
-
     /*
      * 服务端接收客户端消息
      *
@@ -98,10 +98,10 @@ public class WebSocketService {
      * @param username 用户名
      */
     @OnMessage
-    public void handleOnMessage(Session session, String message,
+    public void handleOnMessage(Session session, String content,
                                 @PathParam("fromId") String fromId,
                                 @PathParam("fromRole") String fromRole) {
-        JSONObject jsonObj = JSONUtil.parseObj(message);
+        JSONObject jsonObj = JSONUtil.parseObj(content);
         String toId = jsonObj.getStr("toId");
         String msg = jsonObj.getStr("message");
         String toRole = jsonObj.getStr("toRole");
@@ -127,6 +127,7 @@ public class WebSocketService {
      * @param text            消息文本
      */
     private void handlePatientToDoctorMsg(String fromId, String toId, String msg) {
+        logger.info("服务端 收到 {} 用户 {} 的消息: {}", fromId, toId, msg);
         Session toSession = doctorSessions.get(toId);
         if (toSession != null) {
             JSONObject jsonObj = new JSONObject();
@@ -134,6 +135,7 @@ public class WebSocketService {
             jsonObj.set("fromRole", "patient");
             jsonObj.set("message", msg);
             sendMessage(jsonObj.toString(), toSession);
+            logger.info("患者 {} 发送给 医生 {}，内容: {}", fromId, toId, jsonObj.toString());
 
             patientDoctorMap.putIfAbsent(fromId, new ArrayList<>());
             patientDoctorMap.get((fromId)).add(toId);
@@ -141,7 +143,7 @@ public class WebSocketService {
             doctorPatientMap.putIfAbsent(toId, new ArrayList<>());
             doctorPatientMap.get((toId)).add(fromId);
         } else {
-
+            logger.info("发送失败，未找到 医生 {} 的会话", toId);
         }
     }
 
@@ -160,6 +162,7 @@ public class WebSocketService {
             jsonObj.set("fromRole", "doctor");
             jsonObj.set("message", msg);
             sendMessage(jsonObj.toString(), toSession);
+            logger.info("医生 {} 发送给 患者 {}，内容: {}", fromId, toId, jsonObj.toString());
 
             patientDoctorMap.putIfAbsent(toId, new ArrayList<>());
             patientDoctorMap.get((toId)).add(fromId);
@@ -167,7 +170,7 @@ public class WebSocketService {
             doctorPatientMap.putIfAbsent(fromId, new ArrayList<>());
             doctorPatientMap.get((fromId)).add(toId);
         } else {
-
+            logger.info("发送失败，未找到 患者 {} 的会话", toId);
         }
     }
 
@@ -179,12 +182,12 @@ public class WebSocketService {
      */
     private void sendMessage(String msg, Session toSession) {
         try {
+            logger.info("服务端给客户端 {} 发送消息: {}", toSession.getId(), msg);
             toSession.getBasicRemote().sendText(msg);
         } catch (Exception e) {
             logger.error("服务端发送失败", e);
         }
     }
-
 
     /*
      * 错误处理
