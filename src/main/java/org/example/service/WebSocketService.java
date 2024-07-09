@@ -2,12 +2,13 @@ package org.example.service;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import org.example.config.SpringConfigurator;
 import org.example.pojo.ChatHistory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -18,7 +19,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-@ServerEndpoint("/chat/{fromId}/{fromRole}")
+@ServerEndpoint(value = "/chat/{fromId}/{fromRole}", configurator = SpringConfigurator.class)
 public class WebSocketService {
     // 设置服务器日志
     private static final Logger logger =
