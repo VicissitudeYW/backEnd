@@ -11,7 +11,8 @@ public interface DoctorMapper {
             "specialty, position from doctor where id = #{id}")
     Doctor selectDoctorById(@Param("id") String id);
 
-    @Select("select * from doctor where id = #{id} and user_password = #{userPswd}")
+    @Select("select id, user_password as userPswd, doctor_no as doctorNo, " +
+            "specialty, position from doctor where id = #{id} and user_password = #{userPswd}")
     Doctor selectDoctorByIdAndPswd(@Param("id") String id, @Param("userPswd") String userPswd);
 
     @Select("select id, user_password as userPswd, doctor_no as doctorNo, specialty, position" +

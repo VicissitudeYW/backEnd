@@ -7,7 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface RecordMapper {
-    @Select("select * from medical_record where patient_id = #{patientId}")
+    @Select("select patient_id as patientId, content, mr_time as mrTime" +
+            " from medical_record where patient_id = #{patientId}")
     List<MedicalRecord> findMedicalRecordById(@Param("patientId") String patientId);
 
     @Insert("insert into medical_record (patient_id,content,mr_time)" +

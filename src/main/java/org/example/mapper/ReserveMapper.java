@@ -7,10 +7,14 @@ import java.util.List;
 
 @Mapper
 public interface ReserveMapper {
-    @Select("select * from reserve where patient_id = #{patientId}")
+    @Select("select patient_id as patientId, doctor_id as doctorId," +
+            " time_seg as timeSeg, res_date as resDate " +
+            " from reserve where patient_id = #{patientId}")
     List<Reserve> selectByPatientId(@Param("patientId") String id);
 
-    @Select("select * from reserve where doctor_id = #{doctorId}")
+    @Select("select patient_id as patientId, doctor_id as doctorId," +
+            " time_seg as timeSeg, res_date as resDate " +
+            " from reserve where doctor_id = #{doctorId}")
     List<Reserve> selectByDoctorId(@Param("doctorId") String id);
 
     @Select("select patient_id as patientId, doctor_id as doctorId," +
@@ -20,7 +24,9 @@ public interface ReserveMapper {
     Reserve selectByOldReserve(@Param("patientId") String pid, @Param("doctorId") String did,
                                @Param("timeSeg") String timeSeg, @Param("resDate") String resDate);
 
-    @Select("select * from reserve where doctor_id = #{doctorId} and res_date = #{resDate}")
+    @Select("select patient_id as patientId, doctor_id as doctorId," +
+            " time_seg as timeSeg, res_date as resDate " +
+            " from reserve where doctor_id = #{doctorId} and res_date = #{resDate}")
     List<Reserve> selectByDoctorIdAndDate(@Param("doctorId") String id, @Param("resDate") String resDate);
 
     @Insert("insert into reserve (patient_id, doctor_id, res_date, time_seg)" +
