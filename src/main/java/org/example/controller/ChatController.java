@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.dto.getChatHistoryDTO;
+import org.example.dto.GetChatHistoryDTO;
 import org.example.pojo.ChatHistory;
 import org.example.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class ChatController {
     private ChatService chatService;
 
     @PostMapping("/api/getChatHistory")
-    public List<ChatHistory> getChatHistory(@RequestBody getChatHistoryDTO gchDTO) {
+    public List<ChatHistory> getChatHistory(@RequestBody GetChatHistoryDTO gchDTO) {
         String pid = gchDTO.getPatientId(), did = gchDTO.getDoctorId();
 
         List<ChatHistory> chatHistory = chatService.getChatHistory(pid, did);

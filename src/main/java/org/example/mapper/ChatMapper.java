@@ -10,7 +10,9 @@ import java.util.List;
 
 @Mapper
 public interface ChatMapper {
-    @Select("select * from chat_history " +
+    @Select("select from_id as fromId, to_id as toId, from_role as fromRole, " +
+            "to_role as toRole, message, chat_time as chatTime " +
+            "from chat_history " +
             "where (from_id = #{fromId} and to_id = #{toId}) " +
             "or (from_id = #{toId} and to_id = #{fromId})" +
             "order by chat_time")

@@ -1,8 +1,7 @@
 package org.example.controller;
 
-import org.example.dto.GetInfoDTO;
-import org.example.dto.UpdateInfoDTO;
-import org.example.dto.UpdateInfoResult;
+import org.apache.ibatis.annotations.Param;
+import org.example.dto.*;
 import org.example.pojo.DataUser;
 import org.example.pojo.Doctor;
 import org.example.pojo.Patient;
@@ -12,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Author: Reno Ng
@@ -96,4 +97,24 @@ public class ProcessInfoController {
         }
     }
 
+    @PostMapping("/api/getPageDoctorInfo")
+    public GetPageDoctorInfoResult getPageDoctorInfo(@RequestBody GetPageDoctorInfoDTO gpdIDTO) {
+        int page = gpdIDTO.getPage();
+        int eachPageNum = gpdIDTO.getEachPageNum();
+
+        int allRows = doctorService.countRows();
+        List<Doctor> data = doctorService.selectDoctorLimitOffset(page, eachPageNum);
+
+        int allPage = (allRows + eachPageNum - 1) / eachPageNum;
+
+        return new GetPageDoctorInfoResult(data, allPage);
+    }
+
+    @PostMapping("/api/getSelectedDoctorId")
+    public List<String> getSelectedDoctorId(@RequestBody GetSelectedDoctorIdDTO gsdiDTO) {
+        String position = gsdiDTO.getPosition();
+        String specialty = gsdiDTO.getSpecialty();
+
+        return doctorService.selectDoctorByPositionAndSpecialty(position, specialty);
+    }
 }

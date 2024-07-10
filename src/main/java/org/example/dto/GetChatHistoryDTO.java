@@ -1,13 +1,13 @@
 package org.example.dto;
 
-public class getChatHistoryDTO {
+public class GetChatHistoryDTO {
     private String patientId;
 
     private String doctorId;
 
-    public getChatHistoryDTO() {}
+    public GetChatHistoryDTO() {}
 
-    public getChatHistoryDTO(String patientId, String doctorId) {
+    public GetChatHistoryDTO(String patientId, String doctorId) {
         this.patientId = patientId;
         this.doctorId = doctorId;
     }

@@ -2,7 +2,7 @@ package org.example.controller;
 
 import org.example.dto.*;
 import org.example.pojo.DataUser;
-import org.example.service.UserLogin;
+import org.example.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test")
 public class TestController {
     @Autowired
-    private UserLogin userLogin;
+    private UserLoginService userLoginService;
     @Autowired
     private ProcessInfoController processInfoController;
 
@@ -34,7 +34,7 @@ public class TestController {
         LoginDTO loginDTO = new LoginDTO(id, password, isDoctor);
         LoginResult loginResult = new LoginResult();
 
-        return userLogin.login(loginResult, loginDTO);
+        return userLoginService.login(loginResult, loginDTO);
     }
 
     @GetMapping("/1")

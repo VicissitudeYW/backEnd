@@ -1,8 +1,6 @@
 package org.example.pojo;
 
 public class ChatHistory {
-    private long id;
-
     private String fromId;
 
     private String toId;
@@ -15,8 +13,8 @@ public class ChatHistory {
 
     private String chatTime;
 
-    public ChatHistory(String fromId, String toId, String fromRole, String toRole,
-                       String message, String chatTime) {
+    public ChatHistory(String fromId, String toId, String fromRole,
+                       String toRole, String message, String chatTime) {
         this.fromId = fromId;
         this.toId = toId;
         this.fromRole = fromRole;
@@ -32,14 +30,6 @@ public class ChatHistory {
     public String getToId() {return toId;}
 
     public void setToId(String toId) {this.toId = toId;}
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getFromRole() {
         return fromRole;

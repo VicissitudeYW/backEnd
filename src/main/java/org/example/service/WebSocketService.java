@@ -151,7 +151,7 @@ public class WebSocketService {
      * @param text            消息文本
      */
     private void handleDoctorToPatientMsg(String fromId, String toId, String msg) {
-        Session toSession = doctorSessions.get(toId);
+        Session toSession = patientSessions.get(toId);
         if (toSession != null) {
             JSONObject jsonObj = new JSONObject();
             jsonObj.set("fromId", fromId);

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class DoctorService {
@@ -35,5 +37,19 @@ public class DoctorService {
                              String specialty,
                              String position) {
         doctorMapper.updateDoctor(id, userPswd, specialty, position);
+    }
+
+    public List<Doctor> selectDoctorLimitOffset(int page, int eachPageNum) {
+        int lim = eachPageNum;
+        int off = (page - 1) * eachPageNum;
+        return doctorMapper.selectDoctorLimitOffset(lim, off);
+    }
+
+    public int countRows() {
+        return doctorMapper.countRows();
+    }
+
+    public List<String> selectDoctorByPositionAndSpecialty(String position, String specialty) {
+        return doctorMapper.selectDoctorByPositionAndSpecialty(position, specialty);
     }
 }

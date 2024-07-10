@@ -2,7 +2,7 @@ package org.example.controller;
 
 import org.example.dto.LoginDTO;
 import org.example.dto.LoginResult;
-import org.example.service.UserLogin;
+import org.example.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class LogInController {
     @Autowired
-    private UserLogin userLogin;
+    private UserLoginService userLogin;
 
     @PostMapping(value = "/api/login",
             consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

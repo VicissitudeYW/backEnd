@@ -3,6 +3,8 @@ package org.example.mapper;
 import org.apache.ibatis.annotations.*;
 import org.example.pojo.Doctor;
 
+import java.util.List;
+
 @Mapper
 public interface DoctorMapper {
     @Select("select id, user_password as userPswd, doctor_no as doctorNo, " +
@@ -11,6 +13,17 @@ public interface DoctorMapper {
 
     @Select("select * from doctor where id = #{id} and user_password = #{userPswd}")
     Doctor selectDoctorByIdAndPswd(@Param("id") String id, @Param("userPswd") String userPswd);
+
+    @Select("select id, user_password as userPswd, doctor_no as doctorNo, specialty, position" +
+            " from doctor limit #{lim} offset #{off}")
+    List<Doctor> selectDoctorLimitOffset(@Param("lim") int lim, @Param("off") int off);
+
+    @Select("select count(*) from doctor")
+    int countRows();
+
+    @Select("select id from doctor where position = #{position} and specialty = #{specialty}")
+    List<String> selectDoctorByPositionAndSpecialty(@Param("position") String position,
+                                                    @Param("specialty") String specialty);
 
     @Insert("insert into doctor (id, user_password, doctor_no, specialty, position) " +
             "values (#{id}, #{userPswd}, #{doctorNo}, #{specialty}, #{position})")
