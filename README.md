@@ -79,13 +79,13 @@ project-root
 自定义的异常类
 <br/>
 
-## Application类、ServiceException类
-程序入口 & 服务异常
+## Application类
+程序入口
 <br/>
 <br/>
 <br/>
 
-## resources——基本设定与配置
+## resources
 Springboot、Mybatis的基本配置文件
 
 含有数据库连接信息
