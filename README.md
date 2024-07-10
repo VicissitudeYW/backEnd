@@ -37,14 +37,13 @@ project-root
 ```
 <br/>
 
-### main.java——源码
-#### controller包
+## controller包
 控制类
 
 用于交付前端，展示结果
 <br/>
 
-#### mapper包
+## mapper包
 映射类
 
 用于实现数据库操作
@@ -52,51 +51,51 @@ project-root
 使用注释写法
 <br/>
 
-#### pojo包
+## pojo包
 角色类
 
 映射数据库的关系，类的属性即关系的属性
 <br/>
 
-### service包
+## service包
 服务类
 
 用于专门处理业务逻辑
 <br/>
 
-### dto包
+## dto包
 数据传输类
 
 在前、后端数据交互中传输
 <br/>
 
-### config包
+## config包
 配置类
 
 包含聊天室组件
 <br/>
 
-### exception包
+## exception包
 自定义的异常类
 <br/>
 
-### Application类、ServiceException类
+## Application类、ServiceException类
 程序入口 & 服务异常
 <br/>
 <br/>
 <br/>
 
-### resources——基本设定与配置
+## resources——基本设定与配置
 Springboot、Mybatis的基本配置文件
 
 含有数据库连接信息
 <br/>
 <br/>
-### test
+## test
 含mybatis的数据库操作测试
 <br/>
 <br/>
-### target
+## target
 含有打包的jar文件
 <br/>
 <br/>
