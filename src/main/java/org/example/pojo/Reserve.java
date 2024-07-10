@@ -10,6 +10,8 @@ public class Reserve {
 
     private String resDate;
 
+    public Reserve() {}
+
     public Reserve(String patientId, String doctorId, String resDate, String timeSeg) {
         this.patientId = patientId;
         this.doctorId = doctorId;

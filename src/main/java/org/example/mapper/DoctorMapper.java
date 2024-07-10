@@ -21,7 +21,15 @@ public interface DoctorMapper {
     @Select("select count(*) from doctor")
     int countRows();
 
-    @Select("select id from doctor where position = #{position} and specialty = #{specialty}")
+    @Select("<script>" +
+            "select id from doctor where 1=1" +
+            "<if test='position != null and !position.isEmpty()'>" +
+            " and position = #{position}" +
+            "</if>" +
+            "<if test='specialty != null and !specialty.isEmpty()'>" +
+            " and specialty = #{specialty}" +
+            "</if>" +
+            "</script>")
     List<String> selectDoctorByPositionAndSpecialty(@Param("position") String position,
                                                     @Param("specialty") String specialty);
 

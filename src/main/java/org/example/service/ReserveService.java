@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.example.exception.DuplicateReserveException;
 import org.example.mapper.ReserveMapper;
 import org.example.pojo.Reserve;
@@ -21,6 +22,11 @@ public class ReserveService {
         return reserveMapper.selectByDoctorId(id);
     }
 
+    public Reserve selectByOldReserve(String pid, String did,
+                                      String timeSeg, String resDate) {
+        return reserveMapper.selectByOldReserve(pid, did, timeSeg, resDate);
+    }
+
     public List<Reserve> selectByDoctorIdAndDate(String id, String date) {
         return reserveMapper.selectByDoctorIdAndDate(id, date);
     }
@@ -37,4 +43,8 @@ public class ReserveService {
         return reserveMapper.deleteReserve(reserve);
     }
 
+    public void updateReserve(String patientId, String doctorId,
+                              String oldTimeSeg, String newTimeSeg, String resDate) {
+        reserveMapper.updateReserve(patientId, doctorId, oldTimeSeg, newTimeSeg, resDate);
+    }
 }

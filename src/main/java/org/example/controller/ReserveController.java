@@ -88,6 +88,25 @@ public class ReserveController {
         return availableTime;
     }
 
+    @PostMapping("/api/modifiedReserve")
+    public ModifyReserveResult modifiedReserve(@RequestBody ModifyReserveDTO mrDTO) {
+        String newTimeSeg = mrDTO.getTimeSeg();
+        Reserve reserve = mrDTO.getOld();
+        String patientId = reserve.getPatientId();
+        String doctorId = reserve.getDoctorId();
+        String timeSeg = reserve.getTimeSeg();
+        String resDate = reserve.getResDate();
+
+        if (reserveService.selectByOldReserve(patientId, doctorId,
+                timeSeg, resDate) != null) {
+            reserveService.updateReserve(patientId, doctorId, timeSeg,
+                    newTimeSeg, resDate);
+            return new ModifyReserveResult(true, "修改预约成功");
+        } else {
+            return new ModifyReserveResult(false, "未找到该预约");
+        }
+    }
+
     @ExceptionHandler(DuplicateReserveException.class)
     public AddRemoveReserveResult handleDuplicateKeyException(DuplicateReserveException e) {
         return new AddRemoveReserveResult(false, e.getMessage());
