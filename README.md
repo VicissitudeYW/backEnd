@@ -24,8 +24,6 @@ project-root
 │   │   │   │   ├── exception
 │   │   │   │   │   └── (异常类 - 自定义异常)
 │   │   │   │   ├── Application.java
-│   │   │   │   └── ServiceException.java
-│   │   │   └── (其他可能的包和类)
 │   │   ├── resources
 │   │   │   └── (Springboot、Mybatis的基本配置文件)
 │   │   └── (其他可能的资源文件)
