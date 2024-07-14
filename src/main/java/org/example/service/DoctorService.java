@@ -39,6 +39,10 @@ public class DoctorService {
         doctorMapper.updateDoctor(id, userPswd, specialty, position);
     }
 
+    public String selectDoctorByCredential(String doctorNo) {
+        return doctorMapper.selectDoctorByCredential(doctorNo);
+    }
+
     public List<Doctor> selectDoctorLimitOffset(int page, int eachPageNum) {
         int lim = eachPageNum;
         int off = (page - 1) * eachPageNum;

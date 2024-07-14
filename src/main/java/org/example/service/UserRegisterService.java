@@ -18,10 +18,16 @@ public class UserRegisterService {
         String username = registerDTO.getIdCard();
         if (registerDTO.getIsDoctor()) {
             if (doctorService.selectDoctorById(username) == null) {
+                String doctorNo = registerDTO.getCertificate();
+
+                if (doctorService.selectDoctorByCredential(doctorNo) != null) {
+                    registerResult.setStatus(false);
+                    registerResult.setMsg("该医生凭证已被注册，请重试");
+                }
+
                 String password = registerDTO.getPassword();
                 String specialty = registerDTO.getSpecialty();
                 String position = registerDTO.getLocation();
-                String doctorNo = registerDTO.getCertificate();
                 doctorService.insertDoctor(new Doctor(username, password, doctorNo, specialty, position));
                 registerResult.setStatus(true);
                 registerResult.setMsg("注册成功");

@@ -19,6 +19,9 @@ public interface DoctorMapper {
             " from doctor limit #{lim} offset #{off}")
     List<Doctor> selectDoctorLimitOffset(@Param("lim") int lim, @Param("off") int off);
 
+    @Select("select id from doctor where doctor_no = #{doctorNo}")
+    String selectDoctorByCredential(@Param("doctorNo") String doctorNo);
+
     @Select("select count(*) from doctor")
     int countRows();
 
