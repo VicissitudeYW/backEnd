@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Author: Reno Ng 神衍玉扶光
+ * CreateTime: 2024-07-03
+ * Description: 聊天接口
+ */
+
 @RestController
 public class ChatController {
     @Autowired
